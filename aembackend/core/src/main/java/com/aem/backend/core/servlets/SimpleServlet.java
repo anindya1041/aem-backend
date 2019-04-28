@@ -24,6 +24,8 @@ import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -45,6 +47,7 @@ import java.io.IOException;
 public class SimpleServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUid = 1L;
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     protected void doGet(final SlingHttpServletRequest req,

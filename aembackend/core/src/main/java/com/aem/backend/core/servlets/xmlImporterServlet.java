@@ -23,7 +23,10 @@ import com.day.cq.dam.api.Rendition;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.aem.backend.core.bean.xmlBean;
 import com.day.cq.dam.api.Asset;
 
 /**
@@ -51,10 +54,12 @@ public class xmlImporterServlet extends SlingSafeMethodsServlet {
 		logger.debug("Stream Checking :: {}",stream);
 		Reader inputStreamReader = new InputStreamReader(stream);
 		BufferedReader reader = new BufferedReader(inputStreamReader);
+		List<xmlBean> beanList = new ArrayList<>();
 		while(reader.readLine() != null) {
 			String test = reader.readLine();
 			logger.debug("Reading Sentence :: {}",test);
-			
+			xmlBean tempOb = new xmlBean();
+			//tempOb.setIndustries_Code(industries_Code);
 		}
 		
 	}

@@ -24,8 +24,11 @@ import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.aem.backend.core.serviceImpl.CourseImportHandler;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -41,13 +44,15 @@ import java.io.IOException;
            property={
                    Constants.SERVICE_DESCRIPTION + "=Simple Demo Servlet",
                    "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                   "sling.servlet.resourceTypes="+ "aembackend/components/structure/page",
-                   "sling.servlet.extensions=" + "txt"
+                   "sling.servlet.paths="+"/bin/test/102"
            })
 public class SimpleServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUid = 1L;
     private final Logger logger = LoggerFactory.getLogger(getClass());
+    
+    @Reference
+    public CourseImportHandler courseHandler;
 
     @Override
     protected void doGet(final SlingHttpServletRequest req,
@@ -55,5 +60,6 @@ public class SimpleServlet extends SlingSafeMethodsServlet {
         final Resource resource = req.getResource();
         resp.setContentType("text/plain");
         resp.getWriter().write("Title = " + resource.adaptTo(ValueMap.class).get("jcr:title"));
+        courseHandler.importContent();
     }
 }

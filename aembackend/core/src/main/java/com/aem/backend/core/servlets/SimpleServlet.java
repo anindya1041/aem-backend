@@ -60,6 +60,7 @@ public class SimpleServlet extends SlingSafeMethodsServlet {
         final Resource resource = req.getResource();
         resp.setContentType("text/plain");
         resp.getWriter().write("Title = " + resource.adaptTo(ValueMap.class).get("jcr:title"));
+        /*service Ranking Example
         courseHandler.importContent();
-    }
+*/    }
 }

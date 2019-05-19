@@ -11,15 +11,13 @@ import java.nio.file.Path;
 import javax.jcr.Session;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.commons.json.JSONArray;
 import org.apache.sling.jcr.resource.JcrResourceConstants;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import com.day.cq.commons.Externalizer;
 import com.day.cq.replication.ContentBuilder;
@@ -28,6 +26,7 @@ import com.day.cq.replication.ReplicationContent;
 import com.day.cq.replication.ReplicationContentFactory;
 import com.day.cq.replication.ReplicationException;
 import com.day.cq.replication.ReplicationLog;
+import com.day.cq.replication.TransportHandler;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
@@ -37,9 +36,9 @@ import com.day.cq.wcm.api.PageManager;
  * takes the internal resource path and converts it to external URLs as well as
  * adding vanity URLs and pages that may Sling include the activated resource.
  */
-@Component(metatype=false)
-@Service(ContentBuilder.class)
-@Property(name="name", value="akamai")
+
+@Component(service=ContentBuilder.class,immediate=true,
+name="Custom AKAMAI Content Builder")
 public class AkamaiContentBuilder implements ContentBuilder {
 
     @Reference

@@ -96,8 +96,8 @@
         <script type="text/javascript">
         CQ.WCM.edit({
             "path":"<%= resource.getPath() %>",
-            "dialog":"/apps/akamai/replication/components/akamai/dialog",
-            "type":"akamai/replication/components/akamai",
+            "dialog":"/apps/aembackend/components/replication/components/akamai/dialog",
+            "type":"aembackend/components/replication/components/akamai",
             "editConfig":{
                 "xtype":"editbar",
                 "listeners":{

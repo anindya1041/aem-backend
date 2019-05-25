@@ -99,6 +99,7 @@ public class AkamaiTransportHandler implements TransportHandler {
 		final String transportURI = config.getTransportURI();
         logger.debug("Testing the Custom Transport Handler Invocation");
         logger.debug("printing the stack-trace :: {}",Thread.currentThread().getStackTrace());
+        Thread.currentThread().getStackTrace();
 		return (transportURI != null) ? transportURI.toLowerCase().startsWith(AKAMAI_PROTOCOL) : false;
 	}
 
